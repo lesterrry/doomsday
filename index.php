@@ -35,7 +35,6 @@
 					if (isset($_POST['key'])) {
 						$key = $_POST['key'];
 						$authstatus = "POST key invalid";
-						header("Refresh:0");
 					}
 					else if (isset($_COOKIE['key'])) {
 						$key = $_COOKIE['key'];
@@ -51,6 +50,7 @@
 						if ($authstatus == "POST key invalid") {
 							$authstatus = "authorized via POST key as " . $username;
 							setcookie("key", $key);
+							header("Refresh:0");
 						}
 						else if ($authstatus == "GET key invalid") {
 							$authstatus = "authorized via GET key as " . $username;

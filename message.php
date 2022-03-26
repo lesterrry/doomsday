@@ -1,6 +1,6 @@
 <?php
-define("PLAIN_PATH", "PATH TO LOG FILE");
-define("PICS_FOLDER_PATH", "PATH TO PICS FOLDER");
+define("PLAIN_PATH", "/var/www/foxhole_messages/PLAIN.html");
+define("PICS_FOLDER_PATH", "/var/www/foxhole_messages/pics/");
 require __DIR__ . "/auth.php";
 if (isset($_POST['message']) && isset($_POST['key'])) {
 	$msg = $_POST['message'];

@@ -2,6 +2,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>Goodbye</title>
+		<link rel="icon" href="boom.png" type="image/png">
 		<style type="text/css">
 			body {
 				color: #222;
@@ -27,7 +28,8 @@
 			<b>
 				<?php
 					require __DIR__ . "/auth.php";
-					define("PLAIN_PATH", "PATH TO LOG FILE");
+					define("PLAIN_PATH", "/var/www/foxhole_messages/PLAIN.html");
+					define("VERSION", "0.2.0");
 					$authstatus = "unauthorized";
 					$authok = false;
 					$key = "";
@@ -46,6 +48,7 @@
 					}
 					if (isset($key) && keyvalid($key)) {
 						$authok = true;
+						$logoutprompt = " • <a href='auth.php?deauth'>Deauthorize</a>";
 						$username = getusername($key);
 						if ($authstatus == "POST key invalid") {
 							$authstatus = "authorized via POST key as " . $username;
@@ -56,11 +59,11 @@
 							$authstatus = "authorized via GET key as " . $username;
 							setcookie("key", $key);
 						} else {
-							$authstatus = "authorized via cookie key as " . $username;
+							$authstatus = "authorized via cookie key as " . $username . $logoutprompt;
 						}
 					}
 					
-					echo("Last updated: " . date("H:i") . " • Auth status: " . $authstatus);
+					echo("Version: " . VERSION . " • Last updated: " . date("H.i") . " • Auth status: " . $authstatus);
 				?>
 				<br>
 			</b>
@@ -72,9 +75,9 @@
 			echo("
 					<form action='message.php' method='post' enctype='multipart/form-data'>
 						<input type='hidden' name='key' value='" . $key . "' />
-						Message: <input type='text' name='message' maxlength=2000 size=100 placeholder='<2000 chars' required><br>
+						Message: <input type='text' name='message' maxlength=2000 size=100 placeholder='<2000 chars' required>
 						<input type='hidden' name='MAX_FILE_SIZE' value='2097152' />
-						Attachment: <input type='file' name='attachment'><br>
+						<input type='file' name='attachment'><br>
 						<input type='submit' value='Send'>
 					</form>
 					<hr>

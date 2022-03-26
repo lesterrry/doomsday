@@ -1,6 +1,6 @@
 <?php
 if (!isset($_GET['i'])) { echo("ERR_NOARG"); exit(); }
-define("PICS_FOLDER_PATH", "PATH TO PICS FOLDER");
+define("PICS_FOLDER_PATH", "/var/www/foxhole_messages/pics/");
 $file = PICS_FOLDER_PATH . $_GET['i'];
 if (!file_exists($file)) { echo("ERR_NOFILE"); exit(); }
 header('Content-Description: File Transfer');
@@ -11,4 +11,4 @@ header('Cache-Control: must-revalidate');
 header('Pragma: public');
 header('Content-Length: ' . filesize($file));
 readfile($file);
-exit;
+exit();

@@ -16,7 +16,7 @@ if (isset($_POST['message']) && isset($_POST['key'])) {
 				$picfrmt = "<br><a href='file.php?i=" . $filename . "'>Get attachment [" . $_FILES['attachment']['size'] . "B]</a>";
 			}
 		}
-		$msgfrmt = "<p><b>" . date("H:i m.d") . " by " . $username . ":</b><br>" . $msg . $picfrmt . "</p>" . "\n";
+		$msgfrmt = "<p><b>" . date("H:i d.m.y") . " by " . $username . ":</b><br>" . $msg . $picfrmt . "</p>" . "\n";
 		$f = fopen(PLAIN_PATH, 'a');
 		flock($f, LOCK_EX);
 		fwrite($f, $msgfrmt);

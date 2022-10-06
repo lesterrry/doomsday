@@ -29,7 +29,7 @@
 				<?php
 					require __DIR__ . "/auth.php";
 					define("PLAIN_PATH", "/var/www/foxhole_messages/PLAIN.html");
-					define("VERSION", "0.2.0");
+					define("VERSION", "0.2.1");
 					$authstatus = "unauthorized";
 					$authok = false;
 					$key = "";
